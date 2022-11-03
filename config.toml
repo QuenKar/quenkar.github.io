@@ -1,7 +1,7 @@
 ##########################################
 # 站点配置
 
-baseURL = "https://example.com/"
+baseURL = "https://quenkar.github.io/"
 title = "Hugo 主题 MemE"
 languageCode = "zh-CN"
 hasCJKLanguage = true
