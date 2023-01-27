@@ -1,4 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Quenkar</title><link>https://quenkar.github.io/</link><description>welcome to my blog.</description><generator>Hugo 0.105.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>quenkar2000@gmail.com (quenkar)</managingEditor><webMaster>quenkar2000@gmail.com (quenkar)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Wed, 16 Nov 2022 07:20:32 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://quenkar.github.io/rss.xml"/><item><title>76.串联所有单词的子串</title><link>https://quenkar.github.io/posts/76.%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/</link><guid isPermaLink="true">https://quenkar.github.io/posts/76.%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/</guid><pubDate>Thu, 03 Nov 2022 20:41:11 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="题目">题目&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Quenkar</title><link>https://quenkar.github.io/</link><description>welcome to my blog.</description><generator>Hugo 0.110.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>quenkar2000@gmail.com (quenkar)</managingEditor><webMaster>quenkar2000@gmail.com (quenkar)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Fri, 27 Jan 2023 05:26:27 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://quenkar.github.io/rss.xml"/><item><title>2022年度总结</title><link>https://quenkar.github.io/posts/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</link><guid isPermaLink="true">https://quenkar.github.io/posts/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</guid><pubDate>Fri, 27 Jan 2023 13:16:24 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>离过年差不多只有一个星期了, 来一波总结&lt;/p>
+&lt;h1 id="年度最佳">年度最佳&lt;/h1>
+&lt;h3 id="番剧">番剧&lt;/h3>
+&lt;p>今年看的最印象深刻的两部片子：《赛博朋克2077》《孤独摇滚》&lt;/p>
+&lt;p>《间谍过家家》：前面还追，后面又没有继续观看了
+《更衣人偶坠入爱河》：喜欢女主的性格&lt;/p>
+&lt;p>来自深渊新一季还没有去看，因为之前看这个有点致郁，还是以后再看吧&lt;/p>
+&lt;h3 id="图书">图书&lt;/h3>
+&lt;p>今年一本书都没看...感觉还是要多看一些书QAQ&lt;/p>
+&lt;h3 id="年度app">年度APP&lt;/h3>
+&lt;p>Obsidian，功能强大，本地，还可以GitHub同步，插件多，高度定制。我太喜欢这个软件了。&lt;/p>
+&lt;h3 id="游戏">游戏&lt;/h3>
+&lt;p>《LOL》还是一如即往的占大部分的时间，今年一区浅上了一个黄金。以后看看有没有时间继续打吧。&lt;/p>
+&lt;p>然后就是《茶杯头》通关了，但是DLC还没有打完&lt;/p>
+&lt;p>《艾尔登法环》买了还没玩，电脑配置不太ok...&lt;/p>
+&lt;p>《Hades》玩的也比较多，目前打到16热了.&lt;/p>
+&lt;p>《小骨：英雄杀手》也是比较好玩的，最近大更新了一波，还没有去玩。&lt;/p>
+&lt;h1 id="生活">生活&lt;/h1>
+&lt;h3 id="研究生">研究生&lt;/h3>
+&lt;p>从去年九月份保研失败，开始准备考研，目标是东南大学软件学院电子信息硕士，然后到今年4月份复试结束，尘埃落定，考上了研究生，再续三年学生生活。&lt;/p>
+&lt;h3 id="实习">实习&lt;/h3>
+&lt;p>今年4-7月在北京诺司时空实习，主要是做时序数据库的方向。干的活也不多，中途还封控了一个月，在出租屋摆烂了一个月，薪资的话每天300块+每月1500的房补。
+前两个月基本都在干一些测试的活，还有写一些文档
+后面一个月跟着延允大哥做了一些最终一致性的相关工作，这部分的收获还是很大的。然后实习期间也修复了几个小bug，添加了一些命令行的工具命令。
+总体来说，还可以吧。&lt;/p>
+&lt;p>不过我们go项目组，后面直接没了...无语，前面的工作基本白费了，后面转rust语言，我自觉时间不够，而且当时还有几个好朋友叫我从北京回去，准备出去旅行，我就刚好辞退了，但是最后一个月的房租没住上，差不多亏了2000块，唉。&lt;/p>
+&lt;h3 id="旅行">旅行&lt;/h3>
+&lt;p>从北京回来就准备去福建厦门那边旅行了，我当时的眼睛发炎了，非常难受，眼睛里面老是有眼屎糊着，而且眼睛非常疼，痒。
+高中的时候也其实去过厦门玩了，可能也对此不是很期待，加上身体抱恙。总之，这次旅行体验非常糟糕，感觉那几天我和行尸走肉一样，估计也给同行的伙伴带来不好的影响，以后还是得身体舒适的时候再出门。&lt;/p>
+&lt;h3 id="研一上学期">研一上学期&lt;/h3>
+&lt;p>九月份继续赶往苏州读研，在苏州平时除了上课，就是去健身房和俞乐一起锻炼，要么出去骑车玩玩。写一些算法，完成了15445的网课，还有6824，也没有几个月，而且大部分时间都在上网课，后面都直接翘课了。确实是太过无聊，然后和导师交流过一次workflow的书，关于model checking的。这个领域我还是初窥门径，然后在苏州爆发疫情之前，又赶回老家，老师也没有继续开组会了...（感觉老师也是开摆了ahahah）&lt;/p>
+&lt;h1 id="影响深刻一些小事">影响深刻一些小事&lt;/h1>
+&lt;h3 id="1">1&lt;/h3>
+&lt;p>当时选导师的时候，本来想选数据库相关的导师，但是没有找到，最后就找了周晓宇老师，之前联系过网络那边有一个比较好老师，说是名额满了，但是后来又给我打电话说是还有一个名额，不过那个时候我已经和周老师确认了，就没有后续了。我现在觉得自己导师还可以，佛系，不push，能让我毕业就ok了。&lt;/p>
+&lt;h3 id="2">2&lt;/h3>
+&lt;p>在北京实习的时候和欧阳振光出去吃的一家德缘粉，还有一家肥肠火锅鸡都是北京非常好吃的店，强烈推荐&lt;/p>
+&lt;h3 id="3">3&lt;/h3>
+&lt;p>九月换了新设备，iPhone13还有MacBook pro m2，生产力upup^ _ ^&lt;/p>
+&lt;h1 id="2023">2023&lt;/h1>
+&lt;h3 id="愿望">愿望&lt;/h3>
+&lt;p>希望可以找到一个远程实习，不然感觉下个学期会很无聊。
+希望可以找到一个相伴终生妹子（随缘），可以一起在苏州游玩&lt;/p>
+&lt;p>坚持刷题！！！
+leetcode 上2400分&lt;/p></description><category domain="https://quenkar.github.io/categories/%E7%94%9F%E6%B4%BB/">生活</category></item><item><title>76.串联所有单词的子串</title><link>https://quenkar.github.io/posts/76.%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/</link><guid isPermaLink="true">https://quenkar.github.io/posts/76.%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/</guid><pubDate>Thu, 03 Nov 2022 20:41:11 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="题目">题目&lt;/h2>
 &lt;p>来源：力扣（LeetCode）
 链接：https://leetcode.cn/problems/substring-with-concatenation-of-all-words&lt;/p>
 &lt;h2 id="解题思路">解题思路&lt;/h2>
