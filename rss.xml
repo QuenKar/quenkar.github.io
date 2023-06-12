@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Quenkar</title><link>https://quenkar.github.io/</link><description>welcome to my blog.</description><generator>Hugo 0.111.3 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>quenkar2000@gmail.com (quenkar)</managingEditor><webMaster>quenkar2000@gmail.com (quenkar)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Fri, 24 Mar 2023 06:36:37 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://quenkar.github.io/rss.xml"/><item><title>算法模版</title><link>https://quenkar.github.io/posts/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</link><guid isPermaLink="true">https://quenkar.github.io/posts/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</guid><pubDate>Sat, 04 Mar 2023 12:58:25 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>from &lt;a href="https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/">https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/&lt;/a>&lt;/p>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Quenkar</title><link>https://quenkar.github.io/</link><description>welcome to my blog.</description><generator>Hugo 0.113.0 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>quenkar2000@gmail.com (quenkar)</managingEditor><webMaster>quenkar2000@gmail.com (quenkar)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 12 Jun 2023 04:30:58 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://quenkar.github.io/rss.xml"/><item><title>算法模版</title><link>https://quenkar.github.io/posts/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</link><guid isPermaLink="true">https://quenkar.github.io/posts/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</guid><pubDate>Sat, 04 Mar 2023 12:58:25 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>from &lt;a href="https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/">https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/&lt;/a>&lt;/p>
 &lt;p>感谢Leopold大佬&lt;/p>
 &lt;h2 id="二分答案性质与自变量存在连续性及单调性">二分答案性质与自变量存在连续性及单调性&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1233,12 +1233,6 @@
 &lt;h1 id="生活">生活&lt;/h1>
 &lt;h3 id="研究生">研究生&lt;/h3>
 &lt;p>从去年九月份保研失败，开始准备考研，目标是东南大学软件学院电子信息硕士，然后到今年4月份复试结束，尘埃落定，考上了研究生，再续三年学生生活。&lt;/p>
-&lt;h3 id="实习">实习&lt;/h3>
-&lt;p>今年4-7月在北京诺司时空实习，主要是做时序数据库的方向。干的活也不多，中途还封控了一个月，在出租屋摆烂了一个月，薪资的话每天300块+每月1500的房补。
-前两个月基本都在干一些测试的活，还有写一些文档
-后面一个月跟着延允大哥做了一些最终一致性的相关工作，这部分的收获还是很大的。然后实习期间也修复了几个小bug，添加了一些命令行的工具命令。
-总体来说，还可以吧。&lt;/p>
-&lt;p>不过我们go项目组，后面直接没了...无语，前面的工作基本白费了，后面转rust语言，我自觉时间不够，而且当时还有几个好朋友叫我从北京回去，准备出去旅行，我就刚好辞退了，但是最后一个月的房租没住上，差不多亏了2000块，唉。&lt;/p>
 &lt;h3 id="旅行">旅行&lt;/h3>
 &lt;p>从北京回来就准备去福建厦门那边旅行了，我当时的眼睛发炎了，非常难受，眼睛里面老是有眼屎糊着，而且眼睛非常疼，痒。
 高中的时候也其实去过厦门玩了，可能也对此不是很期待，加上身体抱恙。总之，这次旅行体验非常糟糕，感觉那几天我和行尸走肉一样，估计也给同行的伙伴带来不好的影响，以后还是得身体舒适的时候再出门。&lt;/p>
@@ -1248,7 +1242,7 @@
 &lt;h3 id="1">1&lt;/h3>
 &lt;p>当时选导师的时候，本来想选数据库相关的导师，但是没有找到，最后就找了周晓宇老师，之前联系过网络那边有一个比较好老师，说是名额满了，但是后来又给我打电话说是还有一个名额，不过那个时候我已经和周老师确认了，就没有后续了。我现在觉得自己导师还可以，佛系，不push，能让我毕业就ok了。&lt;/p>
 &lt;h3 id="2">2&lt;/h3>
-&lt;p>在北京实习的时候和振光出去吃的一家德缘粉，还有一家肥肠火锅鸡都是北京非常好吃的店，强烈推荐&lt;/p>
+&lt;p>在北京的时候和振光出去吃的一家德缘粉，还有一家肥肠火锅鸡都是北京非常好吃的店，强烈推荐&lt;/p>
 &lt;h3 id="3">3&lt;/h3>
 &lt;p>九月换了新设备，iPhone13还有MacBook pro m2，生产力upup^ _ ^&lt;/p>
 &lt;h1 id="2023">2023&lt;/h1>
