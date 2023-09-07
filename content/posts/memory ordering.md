@@ -7,7 +7,7 @@ categories: ["rust"]
 
 最近在看*Rust Atomics and Locks*这本书，里面有提到memory ordering的相关问题，这里做一个总结。
 常见的memory ordering有以下几种：
-Relaxed, Release, Acquire, SeqCst，从左到右依次增加了约束。
+Relaxed, Release/Acquire, SeqCst，从左到右依次增加了约束。
 
 
 
