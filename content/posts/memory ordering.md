@@ -179,9 +179,11 @@ fn test_seqcst() {
 result:
 ```css
 Seq-Cst Ordering
+init: x is 0 and y is 0
 t1: change x to 10, then y to 20
 t2: x is 10 and y is 20
 t2: change y to 5
+t3: x is 10 and y is 5
 ```
 
 ## Reference
