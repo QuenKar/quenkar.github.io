@@ -9,7 +9,34 @@ categories: ["rust"]
 常见的memory ordering有以下几种：
 Relaxed, Release/Acquire, SeqCst，从左到右依次增加了约束。
 
+## Happens-Before 关系
+内存模型根据*Happens-Before*关系来定义操作发生的顺序。这意味着，作为一个抽象模型，它不谈论机器指令、缓存、缓冲区、定时、指令重序、编译器优化等，只定义一件事保证在另一件事之前发生的情况，而其他所有内容的顺序则是未定义的。
 
+最基本的一个 *Happens-Before*关系就是在同一线程中，语句的顺序执行顺序。如果一个thread执行
+`f();g();`，那么程序就是先执行`f()`，在执行`g()`。
+
+下面来看看两个线程中的情况。
+```rust
+static X: AtomicI32 = AtomicI32::new(0);
+
+fn main() {
+    X.store(1, Relaxed);
+    let t = thread::spawn(f);
+    X.store(2, Relaxed);
+    t.join().unwrap();
+    X.store(3, Relaxed);
+}
+
+fn f() {
+    let x = X.load(Relaxed);
+    assert!(x == 1 || x == 2);
+}
+```
+对于上面的这个语句块，我们可以得到以下的Happens-Before关系：
+
+![Drawing 2023-09-10 20.41.47.excalidraw.png](http://tva1.sinaimg.cn/large/007ezvqaly1hhrrxzwx3vj30bi0blt9v.jpg)
+
+可以看出这个`assert!`是不会失败的，因为`X.load(Relaxed)`要么是1，要么是2。
 
 ## Ordering::Relaxed
 针对单个atomic操作，没有任何约束，可以看作是没有memory ordering的操作。但实际上还有有一点约束的，唯一的顺序是，一旦在线程2中观察到来自线程1的变量的值，线程2就无法看到来自线程1的该变量的“更早”值。
