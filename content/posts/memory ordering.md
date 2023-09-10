@@ -34,7 +34,7 @@ fn f() {
 ```
 对于上面的这个语句块，我们可以得到以下的Happens-Before关系：
 
-![Drawing 2023-09-10 20.41.47.excalidraw.png](http://tva1.sinaimg.cn/large/007ezvqaly1hhrrxzwx3vj30bi0blt9v.jpg)
+[Imgur](https://i.imgur.com/v3tZP9n.png)
 
 可以看出这个`assert!`是不会失败的，因为`X.load(Relaxed)`要么是1，要么是2。
 
