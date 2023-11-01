@@ -1,4 +1,3 @@
-# quenkar.github.io
-blog
+# blog
 
 https://quenkar.github.io/
