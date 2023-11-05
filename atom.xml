@@ -1,4 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><title type="text">Quenkar</title><subtitle type="html">welcome to my blog.</subtitle><updated>2023-11-01T02:50:19+00:00</updated><id>https://quenkar.github.io/</id><link rel="alternate" type="text/html" href="https://quenkar.github.io/"/><link rel="self" type="application/atom+xml" href="https://quenkar.github.io/atom.xml"/><author><name>quenkar</name><uri>https://quenkar.github.io/</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><generator uri="https://gohugo.io/" version="0.120.2">Hugo</generator><entry><title type="text">memory ordering</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/memory-ordering/"/><id>https://quenkar.github.io/posts/memory-ordering/</id><updated>2023-11-01T02:50:15+00:00</updated><published>2023-09-07T17:33:00+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">最近在看Rust Atomics and Locks这本书，里面有提到memory ordering的相关问……</summary><content type="html">&lt;p>最近在看&lt;em>Rust Atomics and Locks&lt;/em>这本书，里面有提到memory ordering的相关问题，这里做一个总结。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN"><title type="text">Quenkar</title><subtitle type="html">welcome to my blog.</subtitle><updated>2023-11-05T10:01:40+00:00</updated><id>https://quenkar.github.io/</id><link rel="alternate" type="text/html" href="https://quenkar.github.io/"/><link rel="self" type="application/atom+xml" href="https://quenkar.github.io/atom.xml"/><author><name>quenkar</name><uri>https://quenkar.github.io/</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><generator uri="https://gohugo.io/" version="0.120.3">Hugo</generator><entry><title type="text">Note: MMAP in Database System</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/mmap-in-database-system/"/><id>https://quenkar.github.io/posts/mmap-in-database-system/</id><updated>2023-11-05T10:01:38+00:00</updated><published>2023-11-02T19:57:00+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">What's MMAP (💩)？ MMAP is a system call that maps a file into memory. It is a common technique for database systems to access data. MMAP OverView Figure 1 shows a step-by-step overview of how to access a file……</summary><content type="html">&lt;h2 id="whats-mmap-">What's MMAP (💩)？&lt;/h2>
+&lt;p>MMAP is a system call that maps a file into memory. It is a common technique for database systems to access data.&lt;/p>
+&lt;h3 id="mmap-overview">MMAP OverView&lt;/h3>
+&lt;p>&lt;img src="../../static/imgs/mmap_overview.png" alt="mmap overview.png">&lt;/p>
+&lt;p>Figure 1 shows a step-by-step overview of how to access a file
+(“cidr.db”) with mmap.&lt;/p>
+&lt;ol>
+&lt;li>A program calls mmap and receives a
+pointer to the memory-mapped file contents.&lt;/li>
+&lt;li>The OS reserves
+part of the program’s virtual address space but does not load any
+part of the file.&lt;/li>
+&lt;li>The program accesses the file’s contents using the
+pointer.&lt;/li>
+&lt;li>The OS attempts to retrieve the page.&lt;/li>
+&lt;li>Since no valid
+mapping exists for the specified virtual address, the OS triggers a
+page fault to load the referenced part of the file from secondary
+storage into a physical memory page.&lt;/li>
+&lt;li>The OS adds an entry to
+the page table that maps the virtual address to the new physical
+address.&lt;/li>
+&lt;li>The initiating CPU core also caches this entry in its local
+translation lookaside buffer (TLB) to accelerate future accesses.&lt;/li>
+&lt;/ol>
+&lt;h3 id="mmap-benifits">MMAP Benifits&lt;/h3>
+&lt;ol>
+&lt;li>方便实现内存管理&lt;/li>
+&lt;li>不会显示调用系统调用(i.e., read/write)&lt;/li>
+&lt;li>避免了在用户空间copy buffer&lt;/li>
+&lt;/ol>
+&lt;h3 id="problems-with-mmap">Problems with MMAP&lt;/h3>
+&lt;ol>
+&lt;li>Transaction Safety&lt;/li>
+&lt;li>I/O Stall&lt;/li>
+&lt;li>Error Handling&lt;/li>
+&lt;li>Performance&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="../../static/imgs/mmap_performance.png" alt="mmap_performance">&lt;/p>
+&lt;p>可以注意到mmap虽然有上面的那些优点，但是在性能上并没有和文件I/O有明显的优势&lt;/p>
+&lt;h3 id="when-you-should-not-use-mmap-in-your-dbms">When you should not use mmap in your DBMS:&lt;/h3>
+&lt;ul>
+&lt;li>You need to perform updates in a transactionally safe fashion.&lt;/li>
+&lt;li>You want to handle page faults without blocking on slow I/O
+or need explicit control over what data is in memory.&lt;/li>
+&lt;li>You care about error handling and need to return correct results.&lt;/li>
+&lt;li>You require high throughput on fast persistent storage devices.&lt;/li>
+&lt;/ul>
+&lt;h3 id="when-you-should-maybe-use-mmap-in-your-dbms">When you should maybe use mmap in your DBMS:&lt;/h3>
+&lt;ul>
+&lt;li>Your working set (or the entire database) fits in memory and
+the workload is read-only.&lt;/li>
+&lt;li>You need to rush a product to the market and do not care about
+data consistency or long-term engineering headaches.&lt;/li>
+&lt;li>Otherwise, never.&lt;/li>
+&lt;/ul>
+&lt;h2 id="my-thought">My Thought&lt;/h2>
+&lt;p>对于我目前所做的时序数据库方面的一些工作来说，虽然时序数据库没有事务安全的要求，但是时序数据库的数据量一般都是很大的，而且一般都是写多读少，而且时序数据库的数据一般都是append-only的，而且数据的存储也可能在Amazon S3，Azure Blob Storage，GCS这些地方，总的来说，感觉mmap还是不太适合时序数据库场景的。（InfluxDB 2020年开始不用mmap了&lt;/p>
+&lt;h2 id="reference">Reference&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;a href="https://db.cs.cmu.edu/mmap-cidr2022/">Are You Sure You Want to Use MMAP in Your
+Database Management System?&lt;/a>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;a href="https://questdb.io/blog/2020/08/19/memory-mapping-deep-dive/">https://questdb.io/blog/2020/08/19/memory-mapping-deep-dive/&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ul></content><category scheme="https://quenkar.github.io/categories/database/" term="database" label="database"/></entry><entry><title type="text">memory ordering</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/memory-ordering/"/><id>https://quenkar.github.io/posts/memory-ordering/</id><updated>2023-11-05T10:01:38+00:00</updated><published>2023-09-07T17:33:00+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">最近在看Rust Atomics and Locks这本书，里面有提到memory ordering的相关问……</summary><content type="html">&lt;p>最近在看&lt;em>Rust Atomics and Locks&lt;/em>这本书，里面有提到memory ordering的相关问题，这里做一个总结。
 常见的memory ordering有以下几种：
 Relaxed, Release/Acquire, SeqCst，从左到右依次增加了约束。&lt;/p>
 &lt;h2 id="happens-before-关系">Happens-Before 关系&lt;/h2>
@@ -319,7 +386,7 @@ Relaxed, Release/Acquire, SeqCst，从左到右依次增加了约束。&lt;/p>
 &lt;/div>
 &lt;/div>&lt;h2 id="reference">Reference&lt;/h2>
 &lt;p>&lt;a href="https://gcc.gnu.org/wiki/Atomic/GCCMM/AtomicSync">https://gcc.gnu.org/wiki/Atomic/GCCMM/AtomicSync&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://marabos.nl/atomics/">https://marabos.nl/atomics/&lt;/a>&lt;/p></content><category scheme="https://quenkar.github.io/categories/rust/" term="rust" label="rust"/></entry><entry><title type="text">算法模版</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/"/><id>https://quenkar.github.io/posts/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</id><updated>2023-11-01T02:50:15+00:00</updated><published>2023-03-04T12:58:25+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">from https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/ 感谢Leopold大佬 二分答案性质与自变量存在连续性及单调性 1 2 3 4 5 6 7 8 9 10……</summary><content type="html">&lt;p>from &lt;a href="https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/">https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://marabos.nl/atomics/">https://marabos.nl/atomics/&lt;/a>&lt;/p></content><category scheme="https://quenkar.github.io/categories/rust/" term="rust" label="rust"/></entry><entry><title type="text">算法模版</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/"/><id>https://quenkar.github.io/posts/%E7%AE%97%E6%B3%95%E6%A8%A1%E7%89%88/</id><updated>2023-11-05T10:01:38+00:00</updated><published>2023-03-04T12:58:25+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">from https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/ 感谢Leopold大佬 二分答案性质与自变量存在连续性及单调性 1 2 3 4 5 6 7 8 9 10……</summary><content type="html">&lt;p>from &lt;a href="https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/">https://leopoldacc.github.io/Blogs/2021/04/21/%E6%A8%A1%E6%9D%BF%E6%80%BB%E7%BB%93/&lt;/a>&lt;/p>
 &lt;p>感谢Leopold大佬&lt;/p>
 &lt;h2 id="二分答案性质与自变量存在连续性及单调性">二分答案性质与自变量存在连续性及单调性&lt;/h2>
 &lt;div class="highlight">&lt;div class="chroma">
@@ -1534,7 +1601,7 @@ Relaxed, Release/Acquire, SeqCst，从左到右依次增加了约束。&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></content></entry><entry><title type="text">2022年度总结</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/><id>https://quenkar.github.io/posts/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</id><updated>2023-11-01T02:50:15+00:00</updated><published>2023-01-27T13:16:24+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">离过年差不多只有一个星期了, 来一波总结 年度最佳 番剧 今年看的最印象深刻的两部片子：《赛……</summary><content type="html">&lt;p>离过年差不多只有一个星期了, 来一波总结&lt;/p>
+&lt;/div></content></entry><entry><title type="text">2022年度总结</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/"/><id>https://quenkar.github.io/posts/2022%E5%B9%B4%E5%BA%A6%E6%80%BB%E7%BB%93/</id><updated>2023-11-05T10:01:38+00:00</updated><published>2023-01-27T13:16:24+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">离过年差不多只有一个星期了, 来一波总结 年度最佳 番剧 今年看的最印象深刻的两部片子：《赛……</summary><content type="html">&lt;p>离过年差不多只有一个星期了, 来一波总结&lt;/p>
 &lt;h1 id="年度最佳">年度最佳&lt;/h1>
 &lt;h3 id="番剧">番剧&lt;/h3>
 &lt;p>今年看的最印象深刻的两部片子：《赛博朋克2077》《孤独摇滚》&lt;/p>
@@ -1568,7 +1635,7 @@ Relaxed, Release/Acquire, SeqCst，从左到右依次增加了约束。&lt;/p>
 &lt;p>九月换了新设备，iPhone13还有MacBook pro m2，生产力upup^ _ ^&lt;/p>
 &lt;h1 id="2023">2023&lt;/h1>
 &lt;h3 id="愿望">愿望&lt;/h3>
-&lt;p>希望身体健康，多多coding！&lt;/p></content><category scheme="https://quenkar.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活"/></entry><entry><title type="text">76.串联所有单词的子串</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/76.%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/"/><id>https://quenkar.github.io/posts/76.%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/</id><updated>2023-11-01T02:50:15+00:00</updated><published>2022-11-03T20:41:11+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">题目 来源：力扣（LeetCode） 链接：https://leetcode.cn/pr……</summary><content type="html">&lt;h2 id="题目">题目&lt;/h2>
+&lt;p>希望身体健康，多多coding！&lt;/p></content><category scheme="https://quenkar.github.io/categories/%E7%94%9F%E6%B4%BB/" term="生活" label="生活"/></entry><entry><title type="text">76.串联所有单词的子串</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/76.%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/"/><id>https://quenkar.github.io/posts/76.%E4%B8%B2%E8%81%94%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2/</id><updated>2023-11-05T10:01:38+00:00</updated><published>2022-11-03T20:41:11+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">题目 来源：力扣（LeetCode） 链接：https://leetcode.cn/pr……</summary><content type="html">&lt;h2 id="题目">题目&lt;/h2>
 &lt;p>来源：力扣（LeetCode）
 链接：https://leetcode.cn/problems/substring-with-concatenation-of-all-words&lt;/p>
 &lt;h2 id="解题思路">解题思路&lt;/h2>
@@ -1629,4 +1696,4 @@ Relaxed, Release/Acquire, SeqCst，从左到右依次增加了约束。&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></content><category scheme="https://quenkar.github.io/tags/leetcode/" term="leetcode" label="leetcode"/></entry><entry><title type="text">Hello World</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/hello-world/"/><id>https://quenkar.github.io/posts/hello-world/</id><updated>2023-11-01T02:50:15+00:00</updated><published>2022-11-03T17:30:28+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">hello hugo!</summary><content type="html">&lt;p>hello hugo!&lt;/p></content></entry></feed>
+&lt;/div></content><category scheme="https://quenkar.github.io/tags/leetcode/" term="leetcode" label="leetcode"/></entry><entry><title type="text">Hello World</title><link rel="alternate" type="text/html" href="https://quenkar.github.io/posts/hello-world/"/><id>https://quenkar.github.io/posts/hello-world/</id><updated>2023-11-05T10:01:38+00:00</updated><published>2022-11-03T17:30:28+08:00</published><author><name>quenkar</name><uri>https://github.com/QuenKar</uri><email>quenkar2000@gmail.com</email></author><rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">hello hugo!</summary><content type="html">&lt;p>hello hugo!&lt;/p></content></entry></feed>
