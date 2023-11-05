@@ -39,9 +39,9 @@ translation lookaside buffer (TLB) to accelerate future accesses.
  3. 避免了在用户空间copy buffer
 
 ### Problems with MMAP
-1. Transaction Safety
-2. I/O Stall
-3. Error Handling
+1. 事务安全
+2. I/O 延迟（an I/O request that does complete, or that takes excessive time to complete）
+3. 错误处理
 4. Performance
 
 ![mmap_performance](/imgs/mmap_performance.png)
@@ -62,7 +62,7 @@ data consistency or long-term engineering headaches.
 - Otherwise, never.
 
 ## My Thought
-对于我目前所做的时序数据库方面的一些工作来说，虽然时序数据库没有事务安全的要求，但是时序数据库的数据量一般都是很大的，而且一般都是写多读少，而且时序数据库的数据一般都是append-only的，而且数据的存储也可能在Amazon S3，Azure Blob Storage，GCS这些地方，总的来说，感觉mmap还是不太适合时序数据库场景的。（InfluxDB 2020年开始不用mmap了
+对于我目前所做的时序数据库方面的一些工作来说，虽然时序数据库没有事务安全的要求，但是时序数据库的数据量一般都是很大的，一般都是写多读少，用的是append-only的，而且数据的存储也可能在Amazon S3，Azure Blob Storage，GCS这些地方，总的来说，感觉mmap不太适合时序数据库场景的。（By the way, InfluxDB 2020年开始不用mmap了
 
 ## Reference
 
