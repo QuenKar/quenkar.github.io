@@ -34,15 +34,35 @@ address.
 translation lookaside buffer (TLB) to accelerate future accesses.
 
 ### MMAP Benifits
- 1. easy use and low engineering cost
- 2. does not incur the cost of explicit system calls (i.e., read/write)
- 3. avoids redundant copying to a buffer in user space
+ 1. 方便实现内存管理
+ 2. 不会显示调用系统调用(i.e., read/write)
+ 3. 避免了在用户空间copy buffer
 
 ### Problems with MMAP
+1. Transaction Safety
+2. I/O Stall
+3. Error Handling
+4. Performance
 
+![mmap_performance](../../static/imgs/mmap_performance.png)
 
-### When we might consider using MMAP ?
+可以注意到mmap虽然有上面的那些优点，但是在性能上并没有和文件I/O有明显的优势
 
+### When you should not use mmap in your DBMS:
+-  You need to perform updates in a transactionally safe fashion.
+- You want to handle page faults without blocking on slow I/O
+or need explicit control over what data is in memory.
+- You care about error handling and need to return correct results.
+- You require high throughput on fast persistent storage devices.
+### When you should maybe use mmap in your DBMS:
+- Your working set (or the entire database) fits in memory and
+the workload is read-only.
+- You need to rush a product to the market and do not care about
+data consistency or long-term engineering headaches.
+- Otherwise, never.
+
+## My Thought
+对于我目前所做的时序数据库方面的一些工作来说，虽然时序数据库没有事务安全的要求，但是时序数据库的数据量一般都是很大的，而且一般都是写多读少，而且时序数据库的数据一般都是append-only的，而且数据的存储也可能在Amazon S3，Azure Blob Storage，GCS这些地方，总的来说，感觉mmap还是不太适合时序数据库场景的。（InfluxDB 2020年开始不用mmap了
 
 ## Reference
 
