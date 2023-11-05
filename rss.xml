@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Quenkar</title><link>https://quenkar.github.io/</link><description>welcome to my blog.</description><generator>Hugo 0.120.3 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>quenkar2000@gmail.com (quenkar)</managingEditor><webMaster>quenkar2000@gmail.com (quenkar)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Sun, 05 Nov 2023 10:01:40 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://quenkar.github.io/rss.xml"/><item><title>Note: MMAP in Database System</title><link>https://quenkar.github.io/posts/mmap-in-database-system/</link><guid isPermaLink="true">https://quenkar.github.io/posts/mmap-in-database-system/</guid><pubDate>Thu, 02 Nov 2023 19:57:00 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="whats-mmap-">What's MMAP (💩)？&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Quenkar</title><link>https://quenkar.github.io/</link><description>welcome to my blog.</description><generator>Hugo 0.120.3 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>quenkar2000@gmail.com (quenkar)</managingEditor><webMaster>quenkar2000@gmail.com (quenkar)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Sun, 05 Nov 2023 10:57:18 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://quenkar.github.io/rss.xml"/><item><title>Note: MMAP in Database System</title><link>https://quenkar.github.io/posts/mmap-in-database-system/</link><guid isPermaLink="true">https://quenkar.github.io/posts/mmap-in-database-system/</guid><pubDate>Thu, 02 Nov 2023 19:57:00 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="whats-mmap-">What's MMAP (💩)？&lt;/h2>
 &lt;p>MMAP is a system call that maps a file into memory. It is a common technique for database systems to access data.&lt;/p>
 &lt;h3 id="mmap-overview">MMAP OverView&lt;/h3>
-&lt;p>&lt;img src="../../static/imgs/mmap_overview.png" alt="mmap overview.png">&lt;/p>
+&lt;p>&lt;img src="https://quenkar.github.io/imgs/mmap_overview.png" alt="mmap overview.png">&lt;/p>
 &lt;p>Figure 1 shows a step-by-step overview of how to access a file
 (“cidr.db”) with mmap.&lt;/p>
 &lt;ol>
@@ -36,7 +36,7 @@ translation lookaside buffer (TLB) to accelerate future accesses.&lt;/li>
 &lt;li>Error Handling&lt;/li>
 &lt;li>Performance&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="../../static/imgs/mmap_performance.png" alt="mmap_performance">&lt;/p>
+&lt;p>&lt;img src="https://quenkar.github.io/imgs/mmap_performance.png" alt="mmap_performance">&lt;/p>
 &lt;p>可以注意到mmap虽然有上面的那些优点，但是在性能上并没有和文件I/O有明显的优势&lt;/p>
 &lt;h3 id="when-you-should-not-use-mmap-in-your-dbms">When you should not use mmap in your DBMS:&lt;/h3>
 &lt;ul>
