@@ -11,7 +11,7 @@ MMAP is a system call that maps a file into memory. It is a common technique for
 
 ### MMAP OverView
 
-![mmap overview.png](../../static/imgs/mmap_overview.png)
+![mmap overview.png](/imgs/mmap_overview.png)
 
 Figure 1 shows a step-by-step overview of how to access a file
 (“cidr.db”) with mmap. 
@@ -44,7 +44,7 @@ translation lookaside buffer (TLB) to accelerate future accesses.
 3. Error Handling
 4. Performance
 
-![mmap_performance](../../static/imgs/mmap_performance.png)
+![mmap_performance](/imgs/mmap_performance.png)
 
 可以注意到mmap虽然有上面的那些优点，但是在性能上并没有和文件I/O有明显的优势
 
