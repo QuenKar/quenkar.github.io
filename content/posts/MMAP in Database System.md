@@ -1,9 +1,12 @@
 ---
-title: "Note: MMAP in Database System"
+title: "Note: Are You Sure You Want to Use MMAP in Your Database Management System?"
 date: 2023-11-02T19:57:00+08:00
 draft: false
-categories: ["database"]
+categories: ["database","论文阅读笔记"]
 ---
+
+> Are You Sure You Want to Use MMAP in Your Database Management System?
+> https://db.cs.cmu.edu/mmap-cidr2022/
 
 ## What's MMAP (💩)？
 
@@ -61,12 +64,9 @@ the workload is read-only.
 data consistency or long-term engineering headaches.
 - Otherwise, never.
 
-## My Thought
-对于我目前所做的时序数据库方面的一些工作来说，虽然时序数据库没有事务安全的要求，但是时序数据库的数据量一般都是很大的，一般都是写多读少，用的是append-only的，而且数据的存储也可能在Amazon S3，Azure Blob Storage，GCS这些地方，总的来说，感觉mmap不太适合时序数据库场景的。（By the way, InfluxDB 2020年开始不用mmap了
+## Thoughts
+对于我目前所做的时序数据库(`GreptimeDB`)方面的一些工作来说，虽然时序数据库没有事务安全的要求，但是时序数据库的数据量一般都是很大的，一般都是写多读少，用的是append-only的，而且数据的存储也可能在Amazon S3，Azure Blob Storage，GCS这些地方，总的来说，感觉mmap不太适合时序数据库场景的。（By the way, InfluxDB 2020年开始不用mmap了
 
 ## Reference
-
-- [Are You Sure You Want to Use MMAP in Your
-Database Management System?](https://db.cs.cmu.edu/mmap-cidr2022/)
 
 - https://questdb.io/blog/2020/08/19/memory-mapping-deep-dive/
