@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Quenkar</title><link>https://quenkar.github.io/</link><description>welcome to my blog.</description><generator>Hugo 0.120.3 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>quenkar2000@gmail.com (quenkar)</managingEditor><webMaster>quenkar2000@gmail.com (quenkar)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Sun, 05 Nov 2023 11:17:33 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://quenkar.github.io/rss.xml"/><item><title>Note: MMAP in Database System</title><link>https://quenkar.github.io/posts/mmap-in-database-system/</link><guid isPermaLink="true">https://quenkar.github.io/posts/mmap-in-database-system/</guid><pubDate>Thu, 02 Nov 2023 19:57:00 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;h2 id="whats-mmap-">What's MMAP (💩)？&lt;/h2>
+<?xml version="1.0" encoding="utf-8"?><rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Quenkar</title><link>https://quenkar.github.io/</link><description>welcome to my blog.</description><generator>Hugo 0.120.3 https://gohugo.io/</generator><language>zh-CN</language><managingEditor>quenkar2000@gmail.com (quenkar)</managingEditor><webMaster>quenkar2000@gmail.com (quenkar)</webMaster><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><lastBuildDate>Mon, 06 Nov 2023 03:37:34 +0000</lastBuildDate><atom:link rel="self" type="application/rss+xml" href="https://quenkar.github.io/rss.xml"/><item><title>Note: Are You Sure You Want to Use MMAP in Your Database Management System?</title><link>https://quenkar.github.io/posts/mmap-in-database-system/</link><guid isPermaLink="true">https://quenkar.github.io/posts/mmap-in-database-system/</guid><pubDate>Thu, 02 Nov 2023 19:57:00 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;blockquote>
+&lt;p>Are You Sure You Want to Use MMAP in Your Database Management System?
+&lt;a href="https://db.cs.cmu.edu/mmap-cidr2022/">https://db.cs.cmu.edu/mmap-cidr2022/&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="whats-mmap-">What's MMAP (💩)？&lt;/h2>
 &lt;p>MMAP is a system call that maps a file into memory. It is a common technique for database systems to access data.&lt;/p>
 &lt;h3 id="mmap-overview">MMAP OverView&lt;/h3>
 &lt;p>&lt;img src="https://quenkar.github.io/imgs/mmap_overview.png" alt="mmap overview.png">&lt;/p>
@@ -54,18 +58,12 @@ the workload is read-only.&lt;/li>
 data consistency or long-term engineering headaches.&lt;/li>
 &lt;li>Otherwise, never.&lt;/li>
 &lt;/ul>
-&lt;h2 id="my-thought">My Thought&lt;/h2>
-&lt;p>对于我目前所做的时序数据库方面的一些工作来说，虽然时序数据库没有事务安全的要求，但是时序数据库的数据量一般都是很大的，一般都是写多读少，用的是append-only的，而且数据的存储也可能在Amazon S3，Azure Blob Storage，GCS这些地方，总的来说，感觉mmap不太适合时序数据库场景的。（By the way, InfluxDB 2020年开始不用mmap了&lt;/p>
+&lt;h2 id="thoughts">Thoughts&lt;/h2>
+&lt;p>对于我目前所做的时序数据库(&lt;code>GreptimeDB&lt;/code>)方面的一些工作来说，虽然时序数据库没有事务安全的要求，但是时序数据库的数据量一般都是很大的，一般都是写多读少，用的是append-only的，而且数据的存储也可能在Amazon S3，Azure Blob Storage，GCS这些地方，总的来说，感觉mmap不太适合时序数据库场景的。（By the way, InfluxDB 2020年开始不用mmap了&lt;/p>
 &lt;h2 id="reference">Reference&lt;/h2>
 &lt;ul>
-&lt;li>
-&lt;p>&lt;a href="https://db.cs.cmu.edu/mmap-cidr2022/">Are You Sure You Want to Use MMAP in Your
-Database Management System?&lt;/a>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;a href="https://questdb.io/blog/2020/08/19/memory-mapping-deep-dive/">https://questdb.io/blog/2020/08/19/memory-mapping-deep-dive/&lt;/a>&lt;/p>
-&lt;/li>
-&lt;/ul></description><category domain="https://quenkar.github.io/categories/database/">database</category></item><item><title>memory ordering</title><link>https://quenkar.github.io/posts/memory-ordering/</link><guid isPermaLink="true">https://quenkar.github.io/posts/memory-ordering/</guid><pubDate>Thu, 07 Sep 2023 17:33:00 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>最近在看&lt;em>Rust Atomics and Locks&lt;/em>这本书，里面有提到memory ordering的相关问题，这里做一个总结。
+&lt;li>&lt;a href="https://questdb.io/blog/2020/08/19/memory-mapping-deep-dive/">https://questdb.io/blog/2020/08/19/memory-mapping-deep-dive/&lt;/a>&lt;/li>
+&lt;/ul></description><category domain="https://quenkar.github.io/categories/database/">database</category><category domain="https://quenkar.github.io/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">论文阅读笔记</category></item><item><title>memory ordering</title><link>https://quenkar.github.io/posts/memory-ordering/</link><guid isPermaLink="true">https://quenkar.github.io/posts/memory-ordering/</guid><pubDate>Thu, 07 Sep 2023 17:33:00 +0800</pubDate><author>quenkar2000@gmail.com (quenkar)</author><copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright><description>&lt;p>最近在看&lt;em>Rust Atomics and Locks&lt;/em>这本书，里面有提到memory ordering的相关问题，这里做一个总结。
 常见的memory ordering有以下几种：
 Relaxed, Release/Acquire, SeqCst，从左到右依次增加了约束。&lt;/p>
 &lt;h2 id="happens-before-关系">Happens-Before 关系&lt;/h2>
